@@ -35,3 +35,6 @@ nosetests.xml
 .project
 .pydevproject
 
+# project specific files/folders
+site/
+

@@ -18,12 +18,10 @@ class ConfigReader(object):
         self.filename = filename
         self.config = self._read_config()
 
-
     def _read_config(self):
         with open(self.filename, 'r') as f:
             data = json.loads(f.read())
         return data
-
 
     @property
     def gists(self):
@@ -32,14 +30,12 @@ class ConfigReader(object):
         except KeyError:
             raise EmptyConfigException()
 
-
     @property
     def site(self):
         try:
             return self.config['site']
         except KeyError:
             return {}
-
 
     @property
     def application(self):
@@ -55,11 +51,9 @@ class ConfigManager(object):
         'output': 'site'
     }
 
-
     def __init__(self):
         self.config = None
         self.cli()
-
 
     def cli(self):
         # first we parse only for a configuration file with an initial parser
@@ -105,16 +99,12 @@ class ConfigManager(object):
         self.config = cr.config
         self.config['application'] = vars(parser.parse_args(remaining_args))
 
-
     def detect_config(self):
         default_files = ("config.json", "config.yml")
         for file_ in default_files:
             if os.path.exists(file_):
                 return file_
 
-
     def merge_with_default_options(self, cfg_options):
         """merge options from configuration file with the default options"""
         return dict(list(self.defaults.items()) + list(cfg_options.items()))
-
-

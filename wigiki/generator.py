@@ -3,13 +3,17 @@ from jinja2 import Environment, FileSystemLoader
 from wigiki.builder import Builder
 
 class SiteGenerator(object):
-    def __init__(self, template_dir, output_dir, gists, site):
+    def __init__(self, template_dir, output_dir, base_url, gists, site):
         loader = FileSystemLoader(template_dir)
         self.env = Environment(loader=loader)
         self.output_dir = output_dir
         self.gists = gists
         self.site = site
 
+        if base_url == '/':
+            self.base_url = base_url
+        else:
+            self.base_url = "/{}/".format(base_url.strip('/'))
 
     def _render(self, template, data):
         tpl = self.env.get_template(template)
@@ -49,7 +53,7 @@ class SiteGenerator(object):
         tpl_data = {}
         tpl_data['site'] = self.site
         # use html pages
-        tpl_data['pages'] = Builder.page_list(pages)
+        tpl_data['pages'] = Builder.page_list(pages, self.base_url)
         tpl_data['gists'] = gists
 
         index_contents = self._render("base.html", tpl_data)

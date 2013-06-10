@@ -48,7 +48,8 @@ class ConfigReader(object):
 class ConfigManager(object):
     defaults = {
         'templates': 'templates',
-        'output': 'site'
+        'output': 'site',
+        'baseurl': '/'
     }
 
     def __init__(self):
@@ -95,6 +96,9 @@ class ConfigManager(object):
 
         parser.add_argument("-o", "--output", action="store",
                 help="generate static files in target folder")
+
+        parser.add_argument("-u", "--baseurl", action="store",
+                help="use a specific base URL instead of /")
 
         self.config = cr.config
         self.config['application'] = vars(parser.parse_args(remaining_args))

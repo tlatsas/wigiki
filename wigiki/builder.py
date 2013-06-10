@@ -10,11 +10,11 @@ class Builder(object):
 
 
     @classmethod
-    def page_list(cls, pages):
+    def page_list(cls, pages, base_url='/'):
         """transform a list of page titles in a list of html links"""
         plist = []
         for page in pages:
-            url = "<a href=\"/{}\">{}</a>".format(cls.slugify(page), page)
+            url = "<a href=\"{}{}\">{}</a>".format(base_url, cls.slugify(page), page)
             plist.append(url)
         return plist
 

@@ -44,3 +44,6 @@ site/
 Session.vim
 .netrwhist
 *~
+
+# applications configs
+*.json

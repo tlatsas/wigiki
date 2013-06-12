@@ -1,0 +1,15 @@
+{
+    "site": {
+        "title": "a static wiki-like site using gists"
+    },
+    "gists": {
+        "tlatsas": {
+            "page 1 title": "5764226",
+            "page 2 title": "5764229"
+        }
+    },
+    "app": {
+        "output": "_site",
+        "baseurl": "notes"
+    }
+}

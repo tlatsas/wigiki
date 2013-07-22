@@ -3,7 +3,7 @@ class Builder(object):
 
     @classmethod
     def gist(cls, gistid):
-        """gistid my be in a username/id form"""
+        """gistid must be in a username/id form"""
         url = "https://gist.github.com/{}.js".format(gistid)
         script = "<script src=\"{}\"></script>".format(url)
         return script

@@ -33,14 +33,101 @@
         <h3>
 <a name="wiki--gists--wigiki" class="anchor" href="#wiki--gists--wigiki"><span class="octicon octicon-link"></span></a>Wiki + Gists = Wigiki</h3>
 
-<p>The concept behind wigiki was to create a tool which can group and organize all my random notes that I write from time to time as Gists.</p>
+<p>The concept behind wigiki was to create a tool which can group and organize all my random notes that I write from time to time as <a href="https://gist.github.com/">Gists</a>.</p>
 
-<p>You supply a json configuration file and a folder where some template files reside and it generates a static html site. The site can be deployed on your own server or on Github (using the static pages feature).</p>
+<p>The workflow is simple, you supply a json configuration file and a folder where some template files reside and wigiki will generate a static html site. The site can be deployed on your own server or on Github (using the static pages feature).</p>
+
+<p>The templates are using the amazing <a href="http://jinja.pocoo.org/docs/">jinja2</a> template engine. The project includes a very basic theme inside the <code>templates</code> folder.</p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>TODO</p>
 
 <h3>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h3>
 
-<p>TODO</p>
+<p>Currently only the <code>json</code> format is supported for configuration. <code>YAML</code> support is also planned. The configuration file will usually reside in your site's root directory. It includes options about the gists (pages) but it also supports options that you can also supply from the command line. </p>
+
+<p>The configuration file supports three main configuration sections shown below.</p>
+
+<table>
+<thead><tr>
+<th>section key</th>
+<th>description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>site</td>
+<td>Global options that are available to the templates</td>
+</tr>
+<tr>
+<td>gists</td>
+<td>Gists to use as pages</td>
+</tr>
+<tr>
+<td>app</td>
+<td>Application parameters that can also be supplied from the command line</td>
+</tr>
+</tbody>
+</table><h4>
+<a name="site" class="anchor" href="#site"><span class="octicon octicon-link"></span></a>site</h4>
+
+<p>Everything under the <code>site</code> key will be available in the templates as a python dictionary. The default template uses a variable <code>title</code> to set the site's template:</p>
+
+<pre><code>&lt;h1&gt;{{ site['title'] }}&lt;/h1&gt;
+</code></pre>
+
+<h4>
+<a name="gists" class="anchor" href="#gists"><span class="octicon octicon-link"></span></a>gists</h4>
+
+<p>Under the <code>gists</code> key you configure the gists that you want to include to your site. Each gist is essentially a page on your site. You define gists using the author's <code>username</code>, the <code>title</code> of the page and the <code>gist id</code>.</p>
+
+<pre><code>"tlatsas" : {
+    "test": 5764229
+}
+</code></pre>
+
+<p>Wigiki combines these values and builds the appropriate urls to include the gists. </p>
+
+<h4>
+<a name="app" class="anchor" href="#app"><span class="octicon octicon-link"></span></a>app</h4>
+
+<p>Under the <code>app</code> key you configure parameters that can also be supplied from the command line. That way you don't have to give the same arguments over and over again. Currently the following parameters are supported:</p>
+
+<table>
+<thead><tr>
+<th>parameter</th>
+<th>description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>output</td>
+<td>Generate site in given folder</td>
+</tr>
+<tr>
+<td>baseurl</td>
+<td>Serve the site from the given base URL</td>
+</tr>
+</tbody>
+</table><p>This is a sample configuration file:</p>
+
+<pre><code>{
+    "site": {
+        "title": "a static wiki-like site using gists"
+    },
+    "gists": {
+        "tlatsas": {
+            "page 1 title": "5764226",
+            "page 2 title": "5764229"
+        }
+    },
+    "app": {
+        "output": "_site",
+        "baseurl": "notes"
+    }
+}
+</code></pre>
 
 <h3>
 <a name="templating" class="anchor" href="#templating"><span class="octicon octicon-link"></span></a>Templating</h3>

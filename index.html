@@ -35,9 +35,9 @@
 
 <p>The concept behind wigiki was to create a tool which can group and organize all my random notes that I write from time to time as <a href="https://gist.github.com/">Gists</a>.</p>
 
-<p>The workflow is simple, you supply a json configuration file and a folder where some template files reside and wigiki will generate a static html site. The site can be deployed on your own server or on Github (using the static pages feature).</p>
+<p>The workflow is simple, you supply a json configuration file and a folder where some template files reside and wigiki will generate a static html site. The site can be deployed on your own server or on Github (using the static pages feature). Each gist present in the configuration file, will be a page on the site.</p>
 
-<p>The templates are using the amazing <a href="http://jinja.pocoo.org/docs/">jinja2</a> template engine. The project includes a very basic theme inside the <code>templates</code> folder.</p>
+<p>The templates are using the amazing <a href="http://jinja.pocoo.org/docs/">jinja2</a> template engine, which means that it is fairly easy to create your own themes. Also, the project includes a very basic theme inside the <code>templates</code> folder.</p>
 
 <h3>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
@@ -81,14 +81,16 @@
 <h4>
 <a name="gists" class="anchor" href="#gists"><span class="octicon octicon-link"></span></a>gists</h4>
 
-<p>Under the <code>gists</code> key you configure the gists that you want to include to your site. Each gist is essentially a page on your site. You define gists using the author's <code>username</code>, the <code>title</code> of the page and the <code>gist id</code>.</p>
+<p>Under the <code>gists</code> key you configure the gists that you want to include to your site. Each gist is essentially a page on your site. You define gists using the author's <code>username</code>, the <code>title</code> of the page and the <code>gist id</code>. Wigiki combines these values and builds the appropriate urls to include the gists.</p>
+
+<p>For example the following configuration:</p>
 
 <pre><code>"tlatsas" : {
     "test": 5764229
 }
 </code></pre>
 
-<p>Wigiki combines these values and builds the appropriate urls to include the gists. </p>
+<p>will include the gist <a href="https://gist.github.com/tlatsas/5764229">https://gist.github.com/tlatsas/5764229</a> under the name <code>test</code>.</p>
 
 <h4>
 <a name="app" class="anchor" href="#app"><span class="octicon octicon-link"></span></a>app</h4>
@@ -103,11 +105,11 @@
 <tbody>
 <tr>
 <td>output</td>
-<td>Generate site in given folder</td>
+<td>Generate site in given folder [default: _site]</td>
 </tr>
 <tr>
 <td>baseurl</td>
-<td>Serve the site from the given base URL</td>
+<td>The base URL for all site pages [default: /]</td>
 </tr>
 </tbody>
 </table><p>This is a sample configuration file:</p>

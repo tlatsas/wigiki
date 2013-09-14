@@ -1,5 +1,10 @@
+import logging
 from wigiki.generator import SiteGenerator
 from wigiki.config import ConfigManager
+from wigiki.exceptions import *
+
+logging.basicConfig()
+
 
 def main():
     cm = ConfigManager()

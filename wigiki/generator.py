@@ -1,6 +1,14 @@
 import os
+import logging
+
 from jinja2 import Environment, FileSystemLoader
+from jinja2.exceptions import TemplateNotFound
+
 from wigiki.builder import Builder
+from wigiki.exceptions import *
+
+log = logging.getLogger(__name__)
+
 
 class SiteGenerator(object):
     def __init__(self, template_dir, output_dir, base_url, gists, site):
@@ -16,7 +24,12 @@ class SiteGenerator(object):
             self.base_url = "/{}/".format(base_url.strip('/'))
 
     def _render(self, template, data):
-        tpl = self.env.get_template(template)
+        try:
+            tpl = self.env.get_template(template)
+        except TemplateNotFound as e:
+            log.error("Cannot find template {}".format(template))
+            raise WigikiTemplateError
+
         return tpl.render(data)
 
 
@@ -72,4 +85,3 @@ class SiteGenerator(object):
             page_contents = self._render("page.html", tpl_data)
             page_file = os.path.join(page_dir, "index.html")
             self._save_file(page_file, page_contents)
-

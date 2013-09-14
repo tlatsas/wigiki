@@ -1,4 +1,3 @@
-import sys
 from wigiki.generator import SiteGenerator
 from wigiki.config import ConfigManager
 

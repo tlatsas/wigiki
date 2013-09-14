@@ -37,6 +37,7 @@ nosetests.xml
 
 # project specific files/folders
 site/
+_site/
 
 # vim
 .*.s[a-w][a-z]

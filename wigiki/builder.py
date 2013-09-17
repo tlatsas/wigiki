@@ -1,3 +1,4 @@
+import re
 
 class Builder(object):
 
@@ -21,4 +22,6 @@ class Builder(object):
 
     @classmethod
     def slugify(cls, s):
-        return s.replace(' ', '-')
+        """Return the slug version of the string ``s``"""
+        slug = re.sub("[^0-9a-zA-Z-]", "-", s)
+        return re.sub("-{2,}", "-", slug).strip('-')

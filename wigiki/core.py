@@ -11,7 +11,8 @@ def main():
     tpl_dir = cm.config['app']['templates']
     out_dir = cm.config['app']['output']
     base_url = cm.config['app']['baseurl']
+
     generator = SiteGenerator(tpl_dir, out_dir, base_url,
         cm.config['gists'], cm.config['site'])
-    generator.run()
     generator.cleanup()
+    generator.process()

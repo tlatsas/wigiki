@@ -51,7 +51,6 @@ class SiteGenerator(object):
         with open(filename, 'w') as f:
             f.write(contents)
 
-    def run(self):
     def cleanup(self):
         if not os.path.exists(self.output_dir):
             return False
@@ -74,6 +73,7 @@ class SiteGenerator(object):
                 raise WigikiGeneratorError("Cannot delete files from "
                                            "output folder")
 
+    def process(self):
         # parse data
         gists, pages = self._parse_gists()
 

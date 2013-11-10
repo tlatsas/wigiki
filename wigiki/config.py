@@ -2,24 +2,15 @@ import os
 import json
 import argparse
 from wigiki import __version__
-
-class UnknownConfigFileException(Exception):
-    pass
-
-class WrongConfigOptionException(Exception):
-    pass
-
-class EmptyConfigException(Exception):
-    pass
+from wigiki.exceptions import WigikiConfigError
 
 
 class ConfigReader(object):
     def __init__(self, filename):
-        self.filename = filename
-        self.config = self._read_config()
+        self.config = self.read_config(filename)
 
-    def _read_config(self):
-        with open(self.filename, 'r') as f:
+    def read_config(self, filename):
+        with open(filename, 'r') as f:
             data = json.loads(f.read())
         return data
 
@@ -28,7 +19,7 @@ class ConfigReader(object):
         try:
             return self.config['gists']
         except KeyError:
-            raise EmptyConfigException()
+            raise WigikiConfigError("No gists found in configuration")
 
     @property
     def site(self):
@@ -57,6 +48,14 @@ class ConfigManager(object):
         self.cli()
 
     def cli(self):
+        """Read program parameters from command line and configuration files
+
+        We support both command line arguments and configuration files.
+        The command line arguments have always precedence over any
+        configuration file parameters. This allows us to have most of
+        our options in files but override them individually from the command
+        line.
+        """
         # first we parse only for a configuration file with an initial parser
         init_parser = argparse.ArgumentParser(
                 description = __doc__,
@@ -69,23 +68,24 @@ class ConfigManager(object):
 
         args, remaining_args = init_parser.parse_known_args()
 
-        # read from supplied config file or try to find one on cwd
+        # read from supplied configuration file or try to find one in the
+        # current working directory
         if args.config:
-            cr = ConfigReader(args.config)
+            reader = ConfigReader(args.config)
         else:
             config_file = self.detect_config()
             if config_file:
-                cr = ConfigReader(config_file)
+                reader = ConfigReader(config_file)
             else:
-                raise UnknownConfigFileException()
+                raise WigikiConfigError("Cannot find a configuration file")
 
         # implement the rest cli options
         parser = argparse.ArgumentParser(
                 parents = [init_parser],
                 add_help = True,
-                description = "Simple static site generator that uses Gists as pages")
+                description = "Static wiki generator using Github's gists as pages")
 
-        default_options = self.merge_with_default_options(cr.application)
+        default_options = self.merge_with_default_options(reader.application)
         parser.set_defaults(**default_options)
 
         parser.add_argument("-v", "--version", action="version",
@@ -100,15 +100,16 @@ class ConfigManager(object):
         parser.add_argument("-u", "--baseurl", action="store",
                 help="use a specific base URL instead of /")
 
-        self.config = cr.config
-        self.config['application'] = vars(parser.parse_args(remaining_args))
+        self.config = reader.config
+        self.config['app'] = vars(parser.parse_args(remaining_args))
 
     def detect_config(self):
+        """check in the current working directory for configuration files"""
         default_files = ("config.json", "config.yml")
         for file_ in default_files:
             if os.path.exists(file_):
                 return file_
 
-    def merge_with_default_options(self, cfg_options):
+    def merge_with_default_options(self, config_opts):
         """merge options from configuration file with the default options"""
-        return dict(list(self.defaults.items()) + list(cfg_options.items()))
+        return dict(list(self.defaults.items()) + list(config_opts.items()))

@@ -8,9 +8,9 @@ logging.basicConfig()
 
 def main():
     cm = ConfigManager()
-    tpl_dir = cm.config['application']['templates']
-    out_dir = cm.config['application']['output']
-    base_url = cm.config['application']['baseurl']
+    tpl_dir = cm.config['app']['templates']
+    out_dir = cm.config['app']['output']
+    base_url = cm.config['app']['baseurl']
     generator = SiteGenerator(tpl_dir, out_dir, base_url,
         cm.config['gists'], cm.config['site'])
     generator.run()

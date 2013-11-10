@@ -14,3 +14,4 @@ def main():
     generator = SiteGenerator(tpl_dir, out_dir, base_url,
         cm.config['gists'], cm.config['site'])
     generator.run()
+    generator.cleanup()

@@ -1,5 +1,6 @@
 import os
 import logging
+import shutil
 
 from jinja2 import Environment, FileSystemLoader
 from jinja2.exceptions import TemplateNotFound
@@ -50,6 +51,28 @@ class SiteGenerator(object):
             f.write(contents)
 
     def run(self):
+    def cleanup(self):
+        if not os.path.exists(self.output_dir):
+            return False
+
+        for dirpath, dirnames, filenames in os.walk(self.output_dir):
+            if dirpath is self.output_dir:
+                try:
+                    for filename in filenames:
+                        os.remove(os.path.join(dirpath, filename))
+                except IOError as e:
+                    raise WigikiGeneratorError("Cannot delete files from "
+                                               "output folder")
+
+                # to be on the safe side do *not* remove our output folder
+                continue
+
+            try:
+                shutil.rmtree(dirpath)
+            except OSError as e:
+                raise WigikiGeneratorError("Cannot delete files from "
+                                           "output folder")
+
         # parse data
         gists, pages = self._parse_gists()
 

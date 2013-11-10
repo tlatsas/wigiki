@@ -22,11 +22,12 @@ class WigikiParserError(WigikiError):
 
 
 class WigikiGeneratorError(WigikiError):
-    def __init__(self):
+    def __init__(self, msg=None):
         self.code = 4
+        self.msg = msg or "Error while generating site files"
 
     def __str__(self):
-        return "Error while generating site files"
+        return self.msg
 
 
 class WigikiTemplateError(WigikiError):

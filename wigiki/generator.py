@@ -13,6 +13,7 @@ log = logging.getLogger(__name__)
 
 class SiteGenerator(object):
     def __init__(self, template_dir, output_dir, base_url, gists, site):
+        self.template_dir = template_dir
         loader = FileSystemLoader(template_dir)
         self.env = Environment(loader=loader)
         self.output_dir = output_dir
@@ -105,3 +106,9 @@ class SiteGenerator(object):
             page_contents = self._render("page.html", tpl_data)
             page_file = os.path.join(page_dir, "index.html")
             self._save_file(page_file, page_contents)
+
+        # static template files, copy entire assets folder
+        assets_src = os.path.join(self.template_dir, "assets")
+        if os.path.exists(assets_src):
+            assets_dest = os.path.join(self.output_dir, "assets")
+            shutil.copytree(assets_src, assets_dest)

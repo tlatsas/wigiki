@@ -3,13 +3,14 @@
         "title": "a static wiki-like site using gists"
     },
     "gists": {
-        "tlatsas": {
-            "page 1 title": "5764226",
-            "page 2 title": "5764229"
+        "username": {
+            "page 1 title": "gist-id",
+            "page 2 title": "gust-id"
         }
     },
     "app": {
         "output": "_site",
-        "baseurl": "notes"
+        "baseurl": "notes",
+        "templates": "templates/default"
     }
 }

@@ -32,7 +32,6 @@ class SiteGenerator(object):
 
         return tpl.render(data)
 
-
     def _parse_gists(self):
         gists = {}
         pages = []
@@ -45,12 +44,10 @@ class SiteGenerator(object):
 
         return gists, sorted(pages)
 
-
     def _save_file(self, filename, contents):
         """write the html file contents to disk"""
         with open(filename, 'w') as f:
             f.write(contents)
-
 
     def run(self):
         # parse data

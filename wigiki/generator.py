@@ -83,9 +83,11 @@ class SiteGenerator(object):
         except OSError as e:
             pass
 
-        # template data for main index.html file
+        # global template data
         tpl_data = {}
+        tpl_data['baseurl'] = self.base_url
         tpl_data['site'] = self.site
+
         # use html pages
         tpl_data['pages'] = Builder.page_list(pages, self.base_url)
         tpl_data['gists'] = gists

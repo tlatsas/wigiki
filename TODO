@@ -1,0 +1,3 @@
+- expose baseurl to templates
+- support custom jinja2 filters
+- add css to show gist tables

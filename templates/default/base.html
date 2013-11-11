@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang=en>
     <head>
-        <link rel="stylesheet" type="text/css" href="assets/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ baseurl }}assets/style.css" media="screen" />
     </head>
     <body>
-        {# site[] requires site variables to be set in configuration file #}
-        {# <h1>{{ site['title'] }}</h1> #}
+        {# site[] requires site variables to be set in the configuration file #}
+        <h1><a href="{{ baseurl }}">{{ site['title'] }}</a></h1>
 
         <div id="wrapper">
             <div id="pages-nav">

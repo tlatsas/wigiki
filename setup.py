@@ -32,6 +32,9 @@ Example:
 from setuptools import setup
 import wigiki
 
+with open("requirements.txt") as fp:
+    requirements = fp.read().splitlines()
+
 setup(
     name="wigiki",
     version=wigiki.__version__,
@@ -42,6 +45,7 @@ setup(
     author_email="tlatsas@gmx.com",
     license="MIT",
     packages=["wigiki"],
+    install_requires=requirements,
     entry_points = {
         "console_scripts": [
             "wigiki = wigiki.__main__:main",

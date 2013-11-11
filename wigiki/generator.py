@@ -90,7 +90,7 @@ class SiteGenerator(object):
         tpl_data['pages'] = Builder.page_list(pages, self.base_url)
         tpl_data['gists'] = gists
 
-        index_contents = self._render("base.html", tpl_data)
+        index_contents = self._render("index.html", tpl_data)
         index_file = os.path.join(self.output_dir, "index.html")
         self._save_file(index_file, index_contents)
 

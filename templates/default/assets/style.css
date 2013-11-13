@@ -1,4 +1,4 @@
-/* put your css rules here */
+/* base rules */
 #pages-nav {
     float: left;
     width: 300px;
@@ -31,4 +31,70 @@
 .footnote {
     font-size: small;
     font-style: italic;
+}
+
+/* markdown rules for gists */
+.gist-data {
+    padding: 30px;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.markdown-body {
+    line-height: 1.7;
+}
+
+.markdown-body h1 {
+    font-size: 2.5em;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.markdown-body h2 {
+    font-size: 2em;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.markdown-body table {
+    width: 100%;
+    overflow: auto;
+    display: block;
+}
+
+.markdown-body table th, .markdown-body table td {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 6px 13px;
+}
+
+.markdown-body code {
+    white-space: nowrap;
+}
+
+.markdown-body code, .markdown-body tt {
+    margin: 0px 2px;
+    padding: 0px 5px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(248, 248, 248);
+    border-radius: 3px;
+}
+
+.markdown-body .highlight pre, .markdown-body pre {
+    background-color: rgb(248, 248, 248);
+    border: 1px solid rgb(221, 221, 221);
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+
+.markdown-body pre > code {
+    margin: 0px;
+    padding: 0px;
+    white-space: pre;
+    border: medium none;
+    background: none repeat scroll 0% 0% transparent;
 }

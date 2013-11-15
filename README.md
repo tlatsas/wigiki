@@ -12,6 +12,11 @@ I can deploy anywhere as it is just html+css files. Here is how it
 
 ## installation
 
+To install from pypi:
+```
+$ pip install wigiki
+```
+
 To install from source, clone the repo and then run:
 
 ```

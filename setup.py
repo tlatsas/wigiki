@@ -3,7 +3,7 @@
 wigiki
 ------
 
-A simple static site generator that uses Github's Gists as pages.
+Static html site generator that uses Github's Gists as pages.
 
 
 Installation
@@ -25,7 +25,7 @@ For all available options use:
 
 Example:
 
-    wigiki -t ./templates/default -o ./_site -u /
+    wigiki -t templates/default -o _site
 
 """
 

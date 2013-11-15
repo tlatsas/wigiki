@@ -1,0 +1,2 @@
+include LICENSE README.md TODO requirements.txt
+recursive-include templates *

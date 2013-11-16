@@ -14,7 +14,32 @@ The templates are using the amazing [jinja2](http://jinja.pocoo.org/docs/) templ
 
 ### Installation
 
-TODO
+The requirements for wigiki are:
+
+* Python>=__2.7__
+* Jinja2
+
+To install wigiki run:
+
+```
+$ pip install wigiki
+```
+
+To install from source code, download or clone wigiki from [github][home] and run:
+
+```
+$ python setup.py install
+```
+
+In order to contribute clone [the repo][home] and install using:
+
+```
+$ pip install -e .
+```
+
+Distributions packaging wigiki:
+
+* [Archlinux (AUR)][arch]
 
 ### Configuration
 
@@ -101,3 +126,4 @@ issue at [https://github.com/tlatsas/wigiki/issues][issues] or contribute at
 [home]: https://github.com/tlatsas/wigiki
 [docs]: http://tlatsas.github.io/wigiki
 [issues]: https://github.com/tlatsas/wigiki/issues
+[arch]: https://aur.archlinux.org/packages/wigiki-git/

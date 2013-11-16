@@ -106,15 +106,64 @@ This is a sample configuration file:
 }
 ```
 
-### Templating
-
-TODO
-
 ### Generate your first site
 
+Wigiki comes with a default minimal theme. If you install wigiki system wide or
+using a package from your distribution the theme resides in
+`/usr/share/wigiki/themes/default`.
+
+Navigate in a folder and create a configuration file with the name `config.json`.
+Use the sample file found in the repo or in the configuration section above. Example:
+
+```json
+{
+    "site": {
+        "title": "my first static site"
+    },
+    "gists": {
+        "tlatsas": {
+            "page1": "5764229"
+        }
+    },
+    "app": {
+        "output": "_site",
+        "baseurl": "/",
+        "templates": "/usr/share/wigiki/templates/default"
+    }
+}
+```
+
+Then run `wigiki`. This will build a site in the folder **_site** with the following contents:
+
+```
+_site
+|-- assets
+|   `-- style.css
+|-- index.html
+`-- page1
+    `-- index.html
+```
+
+The assets folder is copied directly from the theme. To preview the site you can run
+`python -m http.server` (python3) or `python -m SimpleHTTPServer` (python2) in the `_site` folder.
+
+![frontpage]({{ site.url }}/images/doc/front.png)
+![page1]({{ site.url }}/images/doc/page1.png)
+
+
+Using the command line arguments you can override any option in the `app` section of the configuration
+file wihout editing it.
+
+
+### Other themes
+
 TODO
 
-### Hosting
+### Deploy
+
+TODO
+
+### Writing theme templates
 
 TODO
 

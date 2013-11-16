@@ -92,5 +92,12 @@ TODO
 TODO
 
 ### Support and Contributing
-Check out the documentation at http://tlatsas.github.io/wigiki, report an issue at https://github.com/tlatsas/wigiki/issues or contribute at https://github.com/tlatsas/wigiki.
 
+Check out the documentation at [http://tlatsas.github.io/wigiki][docs], report an
+issue at [https://github.com/tlatsas/wigiki/issues][issues] or contribute at
+[https://github.com/tlatsas/wigiki][home].
+
+
+[home]: https://github.com/tlatsas/wigiki
+[docs]: http://tlatsas.github.io/wigiki
+[issues]: https://github.com/tlatsas/wigiki/issues

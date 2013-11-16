@@ -147,8 +147,8 @@ _site
 The assets folder is copied directly from the theme. To preview the site you can run
 `python -m http.server` (python3) or `python -m SimpleHTTPServer` (python2) in the `_site` folder.
 
-![frontpage](images/doc/front.png)
-![page1](images/doc/page1.png)
+![frontpage](wigiki/images/doc/front.png)
+![page1](wigiki/images/doc/page1.png)
 
 
 Using the command line arguments you can override any option in the `app` section of the configuration

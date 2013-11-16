@@ -144,15 +144,27 @@ _site
     `-- index.html
 ```
 
-The assets folder is copied directly from the theme. To preview the site you can run
-`python -m http.server` (python3) or `python -m SimpleHTTPServer` (python2) in the `_site` folder.
+The assets folder is copied directly from the theme. To preview the site you can run:
+
+```
+$ python -m http.server
+```
+
+for python>=3, or if you use the 2.x version of python run:
+
+```
+$ python -m SimpleHTTPServer
+```
+
+inside the **_site** folder.
 
 <img alt="frontpage" src="images/doc/front.png">
 <img alt="page1" src="images/doc/page1.png">
 
-Using the command line arguments you can override any option in the `app` section of the configuration
-file wihout editing it.
-
+As you can see, the default theme is pretty minimal and lightweight. You can view
+my deploy which has more pages/gists [here][deploy].
+Using the command line arguments you can override any option in the `app`
+section of the configuration file wihout editing it.
 
 ### Other themes
 
@@ -177,3 +189,4 @@ issue at [https://github.com/tlatsas/wigiki/issues][issues] or contribute at
 [docs]: http://tlatsas.github.io/wigiki
 [issues]: https://github.com/tlatsas/wigiki/issues
 [arch]: https://aur.archlinux.org/packages/wigiki-git/
+[deploy]: https://dl.kodama.gr/notes/

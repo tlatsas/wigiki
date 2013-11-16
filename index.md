@@ -83,6 +83,7 @@ parameter | description
 --- | ---
 output | Generate site in given folder [default: _site]
 baseurl | The base URL for all site pages [default: /]
+templates | Template path
 
 This is a sample configuration file:
 
@@ -99,7 +100,8 @@ This is a sample configuration file:
     },
     "app": {
         "output": "_site",
-        "baseurl": "notes"
+        "baseurl": "notes",
+        "templates": "templates/default"
     }
 }
 ```

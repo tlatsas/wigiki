@@ -42,6 +42,7 @@ For a list of command line arguments use `--help` or consult the documentation.
 * [documentation][gh-docs]
 * [issues][gh-issues]
 * [source code][gh-source]
+* [pypi][pypi]
 
 
 ## license
@@ -53,3 +54,4 @@ See `LICENSE`.
 [gh-source]: https://github.com/tlatsas/wigiki
 [cfg-sample]: https://github.com/tlatsas/wigiki/blob/master/config.json.sample
 [site-sample]: https://dl.kodama.gr/notes
+[pypi]: https://pypi.python.org/pypi/wigiki

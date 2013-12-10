@@ -44,7 +44,7 @@ class ConfigManager(object):
     }
 
     def __init__(self):
-        self.config = None
+        self.config = {}
         self.cli()
 
     def cli(self):
@@ -70,14 +70,13 @@ class ConfigManager(object):
 
         # read from supplied configuration file or try to find one in the
         # current working directory
+        reader = None
         if args.config:
             reader = ConfigReader(args.config)
         else:
             config_file = self.detect_config()
             if config_file:
                 reader = ConfigReader(config_file)
-            else:
-                raise WigikiConfigError("Cannot find a configuration file")
 
         # implement the rest cli options
         parser = argparse.ArgumentParser(
@@ -85,7 +84,8 @@ class ConfigManager(object):
                 add_help = True,
                 description = "Static wiki generator using Github's gists as pages")
 
-        default_options = self.merge_with_default_options(reader.application)
+        application_opts = reader.application if reader else {}
+        default_options = self.merge_with_default_options(application_opts)
         parser.set_defaults(**default_options)
 
         parser.add_argument("-v", "--version", action="version",
@@ -100,8 +100,14 @@ class ConfigManager(object):
         parser.add_argument("-u", "--baseurl", action="store",
                 help="use a specific base URL instead of /")
 
-        self.config = reader.config
+        if reader:
+            self.config = reader.config
         self.config['app'] = vars(parser.parse_args(remaining_args))
+
+        # parsing of command line argumenents is done check if we have gists
+        if 'gists' not in self.config:
+            raise WigikiConfigError("Cannot read gists. "
+                                    "Check your configuration file.")
 
     def detect_config(self):
         """check in the current working directory for configuration files"""

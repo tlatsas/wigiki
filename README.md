@@ -1,5 +1,7 @@
 # wigiki
 
+[![Build Status](https://travis-ci.org/tlatsas/wigiki.png?branch=master)](https://travis-ci.org/tlatsas/wigiki)
+
 ## about
 
 Wigiki is a python application which can render static html wiki-like 

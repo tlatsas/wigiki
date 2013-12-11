@@ -6,13 +6,9 @@ from wigiki.exceptions import WigikiConfigError
 
 
 class ConfigReader(object):
-    def __init__(self, filename):
-        self.config = self.read_config(filename)
 
-    def read_config(self, filename):
-        with open(filename, 'r') as f:
-            data = json.loads(f.read())
-        return data
+    def __init__(self, config):
+        self.config = json.loads(config)
 
     @property
     def gists(self):
@@ -71,12 +67,10 @@ class ConfigManager(object):
         # read from supplied configuration file or try to find one in the
         # current working directory
         reader = None
-        if args.config:
-            reader = ConfigReader(args.config)
-        else:
-            config_file = self.detect_config()
-            if config_file:
-                reader = ConfigReader(config_file)
+        config_file = args.config or self.detect_config()
+        if config_file:
+            with open(config_file, 'r') as f:
+                reader = ConfigReader(f.read())
 
         # implement the rest cli options
         parser = argparse.ArgumentParser(
